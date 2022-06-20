@@ -14,8 +14,16 @@ $trick = new Trick();
 //     echo json_encode($row); // response retournée
 // }
 
-if (isset($_POST['action']) && $_POST['action'] == 'view') {
+if (isset($_POST['action']) && $_POST['action'] == 'viewBegginer') {
     $trick->getTrickBegginer($con);
+}
+
+if (isset($_POST['action']) && $_POST['action'] == 'viewIntermediate') {
+    $trick->getIntermediateTricks($con);
+}
+
+if (isset($_POST['action']) && $_POST['action'] == 'viewConfirmed') {
+    $trick->getConfirmedTricks($con);
 }
 
 if (isset($_POST['action']) && $_POST['action'] == 'update') {
@@ -27,7 +35,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update') {
 }
 
 if (isset($_POST['trick_id'])) {
-    
+
     $id_trick = $_POST['trick_id'];
     $id_user = $_SESSION['auth'];
     $rows = $trick->getTrickByUser($con, $id_trick, $id_user);

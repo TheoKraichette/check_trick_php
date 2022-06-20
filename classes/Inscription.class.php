@@ -33,6 +33,7 @@ class Inscription
         )); 
 
         if ($reussi) {
+            ob_start();
             echo '<p class="text-center text-success mt-3">Votre compte a bien été créé</p>
 		<p class="text-center text-success mt-2">Vous allez etre redirigé pour vous connecter.</p>';
         header("Refresh:2; url='./index.php'");

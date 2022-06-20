@@ -95,7 +95,7 @@ ob_start();
                                         <th scope="col">Completé</th>
                                     </tr>
                                 </thead>
-                                <tbody id="list_trick">
+                                <tbody id="list_trick_intermediate">
 
                                 </tbody>
                             </table>
@@ -123,7 +123,7 @@ ob_start();
                                         <th scope="col">Completé</th>
                                     </tr>
                                 </thead>
-                                <tbody id="list_trick">
+                                <tbody id="list_trick_confirmed">
 
                                 </tbody>
                             </table>

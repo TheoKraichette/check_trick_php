@@ -2,9 +2,7 @@ function showUpdateProfil() {
   $.ajax({
     url: "controllers/controller.php",
     type: "POST",
-    data: {
-      action: "view",
-    },
+    data: { action: "view" },
     success: function (response) {
       $("#profil_user").html(response);
     },
@@ -15,11 +13,29 @@ function showBegginerTricks() {
   $.ajax({
     url: "controllers/controller_tricks.php",
     type: "POST",
-    data: {
-      action: "view",
-    },
+    data: { action: "viewBegginer" },
     success: function (response) {
       $("#list_trick_begginer").html(response);
+    },
+  });
+}
+function showIntermediateTricks() {
+  $.ajax({
+    url: "controllers/controller_tricks.php",
+    type: "POST",
+    data: { action: "viewIntermediate" },
+    success: function (response) {
+      $("#list_trick_intermediate").html(response);
+    },
+  });
+}
+function showConfirmedTricks() {
+  $.ajax({
+    url: "controllers/controller_tricks.php",
+    type: "POST",
+    data: { action: "viewConfirmed" },
+    success: function (response) {
+      $("#list_trick_confirmed").html(response);
     },
   });
 }
@@ -27,6 +43,9 @@ function showBegginerTricks() {
 $(function () {
   showUpdateProfil();
   showBegginerTricks();
+  showIntermediateTricks();
+  showConfirmedTricks();
+
   // creation d un article requête ajax
   $("#insert").click(function (e) {
     if ($("#form-data")[0].checkValidity()) {
@@ -47,7 +66,7 @@ $(function () {
     }
   });
 
-  // modification d'un article (Affichage des données dans le modal de modification)
+  // modification du profil user (Affichage des données dans le modal de modification)
   $("body").on("click", ".editBtn", function (e) {
     e.preventDefault();
     edit_id = $(this).attr("id");
@@ -69,7 +88,7 @@ $(function () {
     });
   });
 
-  // mis à jour de l'article
+  // mis à jour du profil
   $("#update").click(function (e) {
     e.preventDefault();
     $.ajax({
@@ -192,62 +211,12 @@ $(function () {
       success: function (response) {
         Swal.fire({ title: "Trick ajouté avec succès !", icon: "success" });
         showBegginerTricks();
+        showConfirmedTricks();
+        showIntermediateTricks();
 
         $("#editModal").modal("hide");
         $("#edit-form-data")[0].reset();
       },
-    });
-  });
-
-    // Ajout d'un trick a la bdd
-    $("#addTrick").click(function (e) {
-      e.preventDefault();
-      $.ajax({
-        url: "controllers/controller_tricks.php",
-        type: "POST",
-        data: $("#edit-form-data").serialize() + "&action=update",
-        success: function (response) {
-          Swal.fire({ title: "Trick ajouté avec succès !", icon: "success" });
-          showBegginerTricks();
-  
-          $("#editModal").modal("hide");
-          $("#edit-form-data")[0].reset();
-        },
-      });
-    });
-  
-
-  // suppression de l'article
-  $("body").on("click", ".deleteBtn", function (e) {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        e.preventDefault();
-        delete_id = $(this).attr("id");
-        $.ajax({
-          url: "controllers/controller.php",
-          type: "POST",
-          data: {
-            action: "delete",
-            delete_id: delete_id,
-          },
-          success: function (res) {
-            Swal.fire(
-              "Deleted!",
-              "Your file has been deleted.",
-              "success",
-              showAllArticles()
-            );
-          },
-        });
-      }
     });
   });
 });
