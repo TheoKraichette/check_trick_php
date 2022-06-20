@@ -1,0 +1,7 @@
+Options +FollowSymlinks
+RewriteEngine On 
+RewriteRule ^home$ views/accueil.php
+RewriteRule ^tricks$ views/list_trick.php
+RewriteRule ^creation-utilisateur$ views/admin_crea_user.php
+RewriteRule ^liste-utilisateur$ views/admin_list_user.php
+RewriteRule ^inscription$ views/inscription.php
