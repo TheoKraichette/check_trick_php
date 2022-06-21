@@ -12,18 +12,15 @@ class Trick
         $aff_sel = "";
 
         foreach ($sel as $so) {
-
-
             $stances =  $this->getTrickByUser($co, $so['id_trick'], $_SESSION['auth']);
             $aff_sel .= "<tr> <td>" . $so['id_trick'] . "</td>";
             $aff_sel .= "<td>" . $so['nom_trick'] . "</td>";
-            $aff_sel .= "<td>" . $so['stars'] . "</td>";
+            $aff_sel .= "<td>" . $so['stars'] . " <i class='bi bi-star-fill text-warning'></i></td>";
             $aff_sel .= '<td>
                 <a href="#" title="Modifier cet élément" class="text-primary trickBtn"
                 data-toggle="modal" data-target="#editModal" id="' . $so['id_trick'] . '">
                   <i class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;
-              </td>
-        ';
+              </td>';
 
             if ($stances) {
                 foreach ($stances as $stance) {
@@ -50,18 +47,15 @@ class Trick
         $aff_sel = "";
 
         foreach ($sel as $so) {
-
-
             $stances =  $this->getTrickByUser($co, $so['id_trick'], $_SESSION['auth']);
             $aff_sel .= "<tr> <td>" . $so['id_trick'] . "</td>";
             $aff_sel .= "<td>" . $so['nom_trick'] . "</td>";
-            $aff_sel .= "<td>" . $so['stars'] . "</td>";
+            $aff_sel .= "<td>" . $so['stars'] . " <i class='bi bi-star-fill text-warning'></i></td>";
             $aff_sel .= '<td>
                 <a href="#" title="Modifier cet élément" class="text-primary trickBtn"
                 data-toggle="modal" data-target="#editModal" id="' . $so['id_trick'] . '">
                   <i class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;
-              </td>
-        ';
+              </td>';
 
             if ($stances) {
                 foreach ($stances as $stance) {
@@ -91,7 +85,7 @@ class Trick
             $stances =  $this->getTrickByUser($co, $so['id_trick'], $_SESSION['auth']);
             $aff_sel .= "<tr> <td>" . $so['id_trick'] . "</td>";
             $aff_sel .= "<td>" . $so['nom_trick'] . "</td>";
-            $aff_sel .= "<td>" . $so['stars'] . "</td>";
+            $aff_sel .= "<td>" . $so['stars'] . " <i class='bi bi-star-fill text-warning'></i></td>";
             $aff_sel .= '<td>
                             <a href="#" title="Modifier cet élément" class="text-primary trickBtn"
                             data-toggle="modal" data-target="#editModal" id="' . $so['id_trick'] . '">

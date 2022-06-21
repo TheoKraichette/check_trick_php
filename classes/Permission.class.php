@@ -164,7 +164,7 @@ class Permission
                         <p class="fonts">Fav trick : ' . $_SESSION["fav_trick"] . '</p>
                         
                     </div>                     <div class="px-4 mt-1">
-                    <p class="fonts">My stars : ' . $_SESSION["total_stars"] . '</p>
+                    <p class="fonts">My stars : ' . $_SESSION["total_stars"] . '<i class="bi bi-star-fill text-warning"></i></p>
                     
                 </div>
                                 <div class="buttons">

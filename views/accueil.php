@@ -12,6 +12,8 @@ if (!isset($_SESSION['auth'])) {
 <head>
     <meta charset='utf-8'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">
+
     <title>Check trick</title>
 </head>
 
@@ -40,18 +42,18 @@ if (!isset($_SESSION['auth'])) {
 
                 <li class="nav-item">
                     <form action="" method='post'>
-                        <button type="submit" class="nav-link active bg-dark" name="deco">Déconnexion</button>
+                        <button type="submit" class="nav-link active bg-dark" name="deco">Log out</button>
                     </form>
                 </li>
             </ul>
         </header>
         <main>
             <div class="container">
-                <div class="row">
-                    <div id="profil_user">
 
-                    </div>
+                <div id="profil_user">
+
                 </div>
+
                 <div class="row">
                     <!-- Modal Pour Modifier un  article  -->
                     <div class="modal fade" id="editModal">

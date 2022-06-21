@@ -38,7 +38,7 @@ ob_start();
             <ul class="nav nav-pills">
                 <li class="nav-item">
                     <form action="" method='post'>
-                        <button type="submit" class="nav-link active bg-dark" name="deco">Déconnexion</button>
+                        <button type="submit" class="nav-link active bg-dark" name="deco">Log out</button>
                     </form>
                 </li>
             </ul>
