@@ -13,8 +13,21 @@ if (!isset($_SESSION['auth'])) {
     <meta charset='utf-8'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Permanent+Marker&display=swap" rel="stylesheet">
     <title>Check trick</title>
+    <style>
+        * {
+
+            font-family: 'Patrick Hand', cursive;
+        }
+
+        button {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 22px;
+        }
+    </style>
 </head>
 
 <body>
@@ -26,26 +39,37 @@ if (!isset($_SESSION['auth'])) {
     </svg>
     <h1 class="visually-hidden">Headers examples</h1>
     <div class="container">
-        <header class="d-flex navbar navbar-expand-sm flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-                <svg class="bi me-2" width="40" height="32">
-                    <use xlink:href="#bootstrap" />
-                </svg>
-                <span class="fs-4">Check trick</span>
-            </a>
-            <ul class="nav nav-pills">
-                <?php
-                require_once('../classes/Permission.class.php');
-                $menu = new Permission();
-                $menu->menuList();
-                ob_start();                ?>
-
-                <li class="nav-item">
-                    <form action="" method='post'>
-                        <button type="submit" class="nav-link active bg-dark" name="deco">Log out</button>
-                    </form>
-                </li>
-            </ul>
+        <header class="mb-5">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                    <a href="home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32">
+                            <use xlink:href="#bootstrap" />
+                        </svg>
+                        <span class="fs-4">Check Trick</span>
+                    </a>
+                    <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <form action="" method='post'>
+                                <button type="submit" class="nav-link active bg-dark" name="deco">Log out</button>
+                            </form>
+                        </li>
+                        <?php
+                        require_once('../classes/ConnexionPdo.class.php');
+                        $co = new ConnexionPdo();
+                        $co = $co->getmyDB();
+                        require_once('../classes/Permission.class.php');
+                        $menu = new Permission();
+                        $menu->menuList();
+                        ob_start();
+                        ?>
+                    </ul>
+                </div>
+            </nav>
+            <hr>
         </header>
         <main>
             <div class="container">
@@ -81,10 +105,17 @@ if (!isset($_SESSION['auth'])) {
                                             <input type="date" name="skating_since" class="form-control" id="skating_since">
                                         </div>
                                         <div class="form-group p-2"><label class="form-label">Stance :</label>
-                                            <input type="text" name="stance" class="form-control" id="stance">
+                                            <select class="form-select" aria-label="Default select example" name="stance" id="stance">
+                                                <option value="Goofy">Goofy</option>
+                                                <option value="Regular">Regular</option>
+                                            </select>
                                         </div>
                                         <div class="form-group p-2"><label class="form-label">Favorite trick :</label>
-                                            <input type="text" name="fav_trick" class="form-control" id="fav_trick">
+                                        <select name="fav_trick" class="form-select">
+                                            <?php $tricks = new Permission();
+                                                $tricks->visuTrickList($co);
+                                            ?>    
+                                    </select>
                                         </div>
                                         <div class="form-group p-2">
                                             <input type="submit" name="update" id="update" value="VALIDER" class="btn btn-outline-primary btn-block form-control">

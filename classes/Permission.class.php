@@ -144,8 +144,8 @@ class Permission
 
         echo    '<div class="container mt-5">
                 <div class="row d-flex justify-content-center">
-                    <div class="col-md-7">
-                        <div class="card p-3 py-4">
+                    <div class="col-md-7 col-xs-12">
+                        <div class="card col-12 p-3 py-4">
                             <div class="text-center">
                                 <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
                             </div>
@@ -178,4 +178,18 @@ class Permission
                 </div>
             </div>';
     }
+
+    public function visuTrickList($co) {
+        $req_sel = "select * from tricks";
+	$res_sel = $co->prepare($req_sel);
+	$res_sel->execute();
+    $aff_sel = "";
+	/*Récupération du résultat de la requête via la fonction fetchAll(); pour un résultat multiple
+	(fonction fetch(); pour un résultat unique) dans un tableau*/
+	$sel = $res_sel->fetchAll();
+		foreach ($sel as $v) :
+			$aff_sel .= "<option value='" . $v['nom_trick'] . "'>" . $v['nom_trick'] ."</options>";
+		endforeach;
+		echo $aff_sel;
+}
 }
