@@ -39,6 +39,17 @@ function showConfirmedTricks() {
     },
   });
 }
+function showExpertTricks() {
+  $.ajax({
+    url: "controllers/controller_tricks.php",
+    type: "POST",
+    data: { action: "viewExpert" },
+    success: function (response) {
+      $("#list_trick_expert").html(response);
+    },
+  });
+}
+
 
 function showPartiallyTrick() {
   $.ajax({
@@ -66,6 +77,7 @@ $(function () {
   showBegginerTricks();
   showIntermediateTricks();
   showConfirmedTricks();
+  showExpertTricks();
   // creation d un article requête ajax
   $("#insert").click(function (e) {
     if ($("#form-data")[0].checkValidity()) {
@@ -233,6 +245,8 @@ $(function () {
         showBegginerTricks();
         showConfirmedTricks();
         showIntermediateTricks();
+        showExpertTricks();
+
         if ($(".showPartially").html() != "") {
           showPartiallyTrick();
           $(".showCompleted").html("");
@@ -260,10 +274,11 @@ $(function () {
   $("#reset").click(function (e) {
     $(".reset").html("");
     $("#accordion").html(
-      ' <div class="card begginer"> <div class="card-header" id="headingOne"> <h5 class="mb-0"> <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Beginner tricks </button> </h5> </div><div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"> <div class="card-body table-responsive "> <table class="table table-striped"> <thead> <tr> <th scope="col-2">Name trick</th> <th scope="col-1">Stars</th> <th scope="col-2">Actions</th> <th scope="col-1">Partially completed</th> <th scope="col-1">100% Completed</th> </tr></thead> <tbody id="list_trick_begginer"> </tbody> </table> </div></div></div><div class="card intermediate"> <div class="card-header" id="headingTwo"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Intermediaire tricks </button> </h5> </div><div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_intermediate"> </tbody> </table> </div></div></div><div class="card confirmed"> <div class="card-header" id="headingThree"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Confirmed tricks </button> </h5> </div><div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_confirmed"> </tbody> </table> </div></div></div></div>'
+      ' <div class="card begginer"> <div class="card-header" id="headingOne"> <h5 class="mb-0"> <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Beginner tricks </button> </h5> </div><div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"> <div class="card-body table-responsive "> <table class="table table-striped"> <thead> <tr> <th scope="col-2">Name trick</th> <th scope="col-1">Stars</th> <th scope="col-2">Actions</th> <th scope="col-1">Partially completed</th> <th scope="col-1">100% Completed</th> </tr></thead> <tbody id="list_trick_begginer"> </tbody> </table> </div></div></div><div class="card intermediate"> <div class="card-header" id="headingTwo"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Intermediaire tricks </button> </h5> </div><div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_intermediate"> </tbody> </table> </div></div></div><div class="card confirmed"> <div class="card-header" id="headingThree"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Confirmed tricks </button> </h5> </div><div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_confirmed"> </tbody> </table> </div></div></div><div class="card expert"> <div class="card-header" id="headingFour"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> Expert tricks </button> </h5> </div><div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_expert"> </tbody> </table> </div></div></div></div>'
     );
     showBegginerTricks();
     showConfirmedTricks();
     showIntermediateTricks();
+    showExpertTricks();
   });
 });

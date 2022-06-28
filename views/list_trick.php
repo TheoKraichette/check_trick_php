@@ -94,11 +94,11 @@ ob_start();
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col-2">Name trick</th>
-                                        <th scope="col-1">Stars</th>
-                                        <th scope="col-2">Actions</th>
-                                        <th scope="col-1">Partially completed</th>
-                                        <th scope="col-1">100% Completed</th>
+                                        <th scope="col" class="col-sm-6">Name trick</th>
+                                        <th scope="col">Stars</th>
+                                        <th scope="col">Actions</th>
+                                        <th scope="col">Partially completed</th>
+                                        <th scope="col">100% Completed</th>
                                     </tr>
                                 </thead>
                                 <tbody id="list_trick_begginer">
@@ -162,61 +162,90 @@ ob_start();
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="card expert">
+                    <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                            <button class="btn collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                Expert tricks
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name trick</th>
+                                        <th scope="col">Stars</th>
+                                        <th scope="col">Actions</th>
+                                        <th scope="col">Partially completed</th>
+                                        <th scope="col">100% Completed</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="list_trick_expert">
 
-            <div class="modal fade" id="editModal">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title mx-auto">Add trick by stance</h4>
-                            <button type="button" class="close" data-dismiss="modal"><i class="bi bi-x"></i></button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body px-4">
-                            <form action="" method="POST" id="edit-form-data">
-                                <input type="hidden" name="trick_id" id="trick_id">
-                                <div class="form-check form-switch">
-                                    <label class="form-check-label" for="normal">Normal</label>
-                                    <input class="form-check-input" type="checkbox" name="stance[]" id="normal" value="normal">
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="stance[]" id="fakie" value="fakie">
-                                    <label class="form-check-label" for="fakie">Fakie</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="stance[]" id="switch" value="switch">
-                                    <label class="form-check-label" for="switch">Switch</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" name="stance[]" id="nollie" value="nollie">
-                                    <label class="form-check-label" for="nollie">Nollie</label>
-                                </div>
-                                <div class="form-group p-2">
-                                    <input type="submit" name="addTrick" id="addTrick" value="VALIDER" class="btn btn-outline-primary btn-block form-control">
-                                </div>
-                            </form>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        <?php
-        require_once('../classes/ConnexionPdo.class.php');
-        require_once('../classes/Authentification.class.php');
-        if (isset($_POST['deco'])) {
-            $auth = new Authentification();
-            $auth->deco();
-        }
-        ?>
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="./js/appscript.js"></script>
+    </div>
+
+
+    <div class="modal fade" id="editModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title mx-auto">Add trick by stance</h4>
+                    <button type="button" class="close" data-dismiss="modal"><i class="bi bi-x"></i></button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body px-4">
+                    <form action="" method="POST" id="edit-form-data">
+                        <input type="hidden" name="trick_id" id="trick_id">
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="normal">Normal</label>
+                            <input class="form-check-input" type="checkbox" name="stance[]" id="normal" value="normal">
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="stance[]" id="fakie" value="fakie">
+                            <label class="form-check-label" for="fakie">Fakie</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="stance[]" id="switch" value="switch">
+                            <label class="form-check-label" for="switch">Switch</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="stance[]" id="nollie" value="nollie">
+                            <label class="form-check-label" for="nollie">Nollie</label>
+                        </div>
+                        <div class="form-group p-2">
+                            <input type="submit" name="addTrick" id="addTrick" value="VALIDER" class="btn btn-outline-primary btn-block form-control">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+    <?php
+    require_once('../classes/ConnexionPdo.class.php');
+    require_once('../classes/Authentification.class.php');
+    if (isset($_POST['deco'])) {
+        $auth = new Authentification();
+        $auth->deco();
+    }
+    ?>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/appscript.js"></script>
 </body>
 
 </html>
