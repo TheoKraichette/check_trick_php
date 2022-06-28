@@ -168,9 +168,9 @@ class Permission
                     
                 </div>
                                 <div class="buttons">
-                                    <a href="#" title="Modifier cet élément" class="btn btn-outline-dark px-4 editBtn" data-toggle="modal" data-target="#editModal" id="' . $_SESSION["auth"] . '"">
+                                    <a href="#" title="Modifier cet élément" class="btn btn-outline-dark px-4 mb-1 editBtn" data-toggle="modal" data-target="#editModal" id="' . $_SESSION["auth"] . '"">
                                         <i class="bi bi-pencil-square"></i>Modifier le profil</a>
-                                    <a href="tricks" class="btn btn-dark px-4 ms-3">Acceder à la liste des tricks<a/>
+                                    <a href="tricks" class="btn btn-dark px-4 ms-3 mb-1">Acceder à la liste des tricks<a/>
                                 </div>
                             </div>
                         </div>
@@ -179,17 +179,18 @@ class Permission
             </div>';
     }
 
-    public function visuTrickList($co) {
+    public function visuTrickList($co)
+    {
         $req_sel = "select * from tricks";
-	$res_sel = $co->prepare($req_sel);
-	$res_sel->execute();
-    $aff_sel = "";
-	/*Récupération du résultat de la requête via la fonction fetchAll(); pour un résultat multiple
-	(fonction fetch(); pour un résultat unique) dans un tableau*/
-	$sel = $res_sel->fetchAll();
-		foreach ($sel as $v) :
-			$aff_sel .= "<option value='" . $v['nom_trick'] . "'>" . $v['nom_trick'] ."</options>";
-		endforeach;
-		echo $aff_sel;
-}
+        $res_sel = $co->prepare($req_sel);
+        $res_sel->execute();
+        $aff_sel = "";
+
+        $sel = $res_sel->fetchAll();
+        $aff_sel .= '<option value="">--choice a fav trick</option>';
+        foreach ($sel as $v) :
+            $aff_sel .= "<option value='" . $v['nom_trick'] . "'>" . $v['nom_trick'] . "</option>";
+        endforeach;
+        echo $aff_sel;
+    }
 }

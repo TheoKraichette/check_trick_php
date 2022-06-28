@@ -40,12 +40,32 @@ function showConfirmedTricks() {
   });
 }
 
+function showPartiallyTrick() {
+  $.ajax({
+    url: "controllers/controller_tricks.php",
+    type: "POST",
+    data: { action: "viewPartially" },
+    success: function (response) {
+      $(".showPartially").html(response);
+    },
+  });
+}
+function showCompletedTricks() {
+  $.ajax({
+    url: "controllers/controller_tricks.php",
+    type: "POST",
+    data: { action: "viewCompleted" },
+    success: function (response) {
+      $(".showCompleted").html(response);
+    },
+  });
+}
+
 $(function () {
   showUpdateProfil();
   showBegginerTricks();
   showIntermediateTricks();
   showConfirmedTricks();
-
   // creation d un article requête ajax
   $("#insert").click(function (e) {
     if ($("#form-data")[0].checkValidity()) {
@@ -213,10 +233,37 @@ $(function () {
         showBegginerTricks();
         showConfirmedTricks();
         showIntermediateTricks();
-
+        if ($(".showPartially").html() != "") {
+          showPartiallyTrick();
+          $(".showCompleted").html("");
+        }
+        if ($(".showCompleted").html() != "") {
+          showCompletedTricks();
+          $(".showPartially").html("");
+        }
         $("#editModal").modal("hide");
         $("#edit-form-data")[0].reset();
       },
     });
+  });
+
+  $("#showPartially").click(function (e) {
+    showPartiallyTrick();
+    $(".showCompleted").html("");
+    $("#accordion").html("");
+  });
+  $("#showCompleted").click(function (e) {
+    showCompletedTricks();
+    $(".showPartially").html("");
+    $("#accordion").html("");
+  });
+  $("#reset").click(function (e) {
+    $(".reset").html("");
+    $("#accordion").html(
+      ' <div class="card begginer"> <div class="card-header" id="headingOne"> <h5 class="mb-0"> <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Beginner tricks </button> </h5> </div><div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"> <div class="card-body table-responsive "> <table class="table table-striped"> <thead> <tr> <th scope="col-2">Name trick</th> <th scope="col-1">Stars</th> <th scope="col-2">Actions</th> <th scope="col-1">Partially completed</th> <th scope="col-1">100% Completed</th> </tr></thead> <tbody id="list_trick_begginer"> </tbody> </table> </div></div></div><div class="card intermediate"> <div class="card-header" id="headingTwo"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> Intermediaire tricks </button> </h5> </div><div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_intermediate"> </tbody> </table> </div></div></div><div class="card confirmed"> <div class="card-header" id="headingThree"> <h5 class="mb-0"> <button class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Confirmed tricks </button> </h5> </div><div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion"> <div class="card-body table-responsive"> <table class="table table-striped"> <thead> <tr> <th scope="col">Name trick</th> <th scope="col">Stars</th> <th scope="col">Actions</th> <th scope="col">Partially completed</th> <th scope="col">100% Completed</th> </tr></thead> <tbody id="list_trick_confirmed"> </tbody> </table> </div></div></div></div>'
+    );
+    showBegginerTricks();
+    showConfirmedTricks();
+    showIntermediateTricks();
   });
 });

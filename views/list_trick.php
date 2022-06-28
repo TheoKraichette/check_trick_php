@@ -14,6 +14,7 @@ ob_start();
 
 <head>
     <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,8 +71,16 @@ ob_start();
         </div>
 
         <main>
+            <div class="mb-5 ms-5">
+                <button id="reset">By levels</button>
+                <button id='showPartially'>Partially completed only</button>
+                <button id="showCompleted">Completed only</button>
+            </div>
+            <div class="showPartially reset"></div>
+            <div class="showCompleted reset"></div>
             <div id="accordion">
-                <div class="card">
+
+                <div class="card begginer">
                     <div class="card-header" id="headingOne">
                         <h5 class="mb-0">
                             <button class="btn" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -81,16 +90,15 @@ ob_start();
                     </div>
 
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body table-responsive ">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Name trick</th>
-                                        <th scope="col">Stars</th>
-                                        <th scope="col">Actions</th>
-                                        <th scope="col">Partially completed</th>
-                                        <th scope="col">Completed</th>
+                                        <th scope="col-2">Name trick</th>
+                                        <th scope="col-1">Stars</th>
+                                        <th scope="col-2">Actions</th>
+                                        <th scope="col-1">Partially completed</th>
+                                        <th scope="col-1">100% Completed</th>
                                     </tr>
                                 </thead>
                                 <tbody id="list_trick_begginer">
@@ -100,7 +108,7 @@ ob_start();
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card intermediate">
                     <div class="card-header" id="headingTwo">
                         <h5 class="mb-0">
                             <button class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -109,16 +117,15 @@ ob_start();
                         </h5>
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Name trick</th>
                                         <th scope="col">Stars</th>
                                         <th scope="col">Actions</th>
-                                        <th scope="col">Partiellement completé</th>
-                                        <th scope="col">Completé</th>
+                                        <th scope="col">Partially completed</th>
+                                        <th scope="col">100% Completed</th>
                                     </tr>
                                 </thead>
                                 <tbody id="list_trick_intermediate">
@@ -128,7 +135,7 @@ ob_start();
                         </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card confirmed">
                     <div class="card-header" id="headingThree">
                         <h5 class="mb-0">
                             <button class="btn collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -137,16 +144,15 @@ ob_start();
                         </h5>
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                        <div class="card-body">
+                        <div class="card-body table-responsive">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
                                         <th scope="col">Name trick</th>
                                         <th scope="col">Stars</th>
                                         <th scope="col">Actions</th>
-                                        <th scope="col">Partiellement completé</th>
-                                        <th scope="col">Completé</th>
+                                        <th scope="col">Partially completed</th>
+                                        <th scope="col">100% Completed</th>
                                     </tr>
                                 </thead>
                                 <tbody id="list_trick_confirmed">

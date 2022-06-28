@@ -25,6 +25,14 @@ if (isset($_POST['action']) && $_POST['action'] == 'viewIntermediate') {
 if (isset($_POST['action']) && $_POST['action'] == 'viewConfirmed') {
     $trick->getConfirmedTricks($con);
 }
+if (isset($_POST['action']) && $_POST['action'] == 'viewPartially') {
+    $id_user = $_SESSION['auth'];
+    $trick->getPartially($con, $id_user);
+}
+if (isset($_POST['action']) && $_POST['action'] == 'viewCompleted') {
+    $id_user = $_SESSION['auth'];
+    $trick->getCompleted($con, $id_user);
+}
 
 if (isset($_POST['action']) && $_POST['action'] == 'update') {
     $id_trick = $_POST['trick_id'];
