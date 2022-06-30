@@ -1,5 +1,6 @@
 <?php
 
+
 class Permission
 {
     public function menuCrea()
@@ -21,28 +22,40 @@ class Permission
         </li>';
         }
     }
-
+    public function updateAdmin($co, $id, $role)
+    {
+        session_start();
+        if ($_SESSION["role"] == "admin") {
+            $query = "UPDATE users SET role=:role WHERE id = :id";
+            $stmt = $co->prepare($query);
+            $stmt->execute([
+                'id' => $id,
+                'role' => $role
+            ]);
+            return true;
+        }
+    }
     public function listUser($con)
     {
-        $req_sel = "select * from user";
+        $req_sel = "select * from users";
         $res_sel = $con->prepare($req_sel);
         $res_sel->execute();
         $sel = $res_sel->fetchAll();
 
-        $aff_sel = "";
+        $aff_sel = "coucou";
 
         foreach ($sel as $v) :
-            $aff_sel .= "<tr> <td>" . $v['id_user'] . "</td>";
-            $aff_sel .= "<td>" . $v['login_user'] . "</td>";
+            $aff_sel .= "<tr> <td>" . $v['id'] . "</td>";
+            $aff_sel .= "<td>" . $v['nickname'] . "</td>";
             $aff_sel .= "<td>" . substr($v['mdp_user'], 35) . "</td>";
             $aff_sel .= "<td>" . $v['role'] . "</td>";
             $aff_sel .= '<td>
-                <a href="#" title="Modifier cet élément" class="text-primary editBtn"
-                data-toggle="modal" data-target="#editModal" id="' . $v['id_user'] . '">
+                <a href="#" title="Modifier cet élément" class="text-primary editBtnAdmin"
+                data-toggle="modal" data-target="#editModal" id="' . $v['id'] . '">
                   <i class="bi bi-pencil-square"></i></a>&nbsp;&nbsp;
           
                   <a href="#" title="Supprimer cet élément" class="text-danger deleteBtn"
-                   id="' . $v['id_user'] . '">
+                   id="' . $v['id'] . '">
                   <i class="bi bi-x-circle-fill"></i></a>
           
               </td></tr>
@@ -50,6 +63,14 @@ class Permission
         endforeach;
         ob_start();
         echo $aff_sel;
+    }
+    public function getArticleById($con, $id)
+    {
+        $query = "SELECT * FROM users WHERE id = :id";
+        $stmt = $con->prepare($query);
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 
     public function getUserById($con, $id)
@@ -169,8 +190,8 @@ class Permission
                 </div>
                                 <div class="buttons">
                                     <a href="#" title="Modifier cet élément" class="btn btn-outline-dark px-4 mb-1 editBtn" data-toggle="modal" data-target="#editModal" id="' . $_SESSION["auth"] . '"">
-                                        <i class="bi bi-pencil-square"></i>Modifier le profil</a>
-                                    <a href="tricks" class="btn btn-dark px-4 ms-3 mb-1">Acceder à la liste des tricks<a/>
+                                        <i class="bi bi-pencil-square"></i>Update profil</a>
+                                    <a href="tricks" class="btn btn-dark px-4 ms-3 mb-1">Go to trick list<a/>
                                 </div>
                             </div>
                         </div>

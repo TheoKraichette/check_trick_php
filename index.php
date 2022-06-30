@@ -15,16 +15,16 @@ if (isset($_SESSION['auth'])) {
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" integrity="sha384-ejwKkLla8gPP8t2u0eQyL0Q/4ItcnyveF505U0NIobD/SMsNyXrLti6CWaD0L52l" crossorigin="anonymous">
   <title>Check trick</title>
   <style>
-        * {
+    * {
 
-            font-family: 'Patrick Hand', cursive;
-        }
+      font-family: 'Patrick Hand', cursive;
+    }
 
-        button {
-            font-family: 'Permanent Marker', cursive;
-            font-size: 22px;
-        }
-    </style>
+    button {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 22px;
+    }
+  </style>
 </head>
 
 <body>
@@ -68,8 +68,9 @@ if (isset($_SESSION['auth'])) {
 
     if (isset($_POST['select_user'])) {
       $auth = new Authentification();
-      $user = $auth->login($_POST['login_user'], $_POST['mdp_user']);
+      $user = $auth->login(htmlspecialchars($_POST['login_user']), htmlspecialchars($_POST['mdp_user']));
     }
+
     ?>
   </div>
 

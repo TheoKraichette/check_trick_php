@@ -7,6 +7,10 @@ $user = new Permission;
 
 $con = $con->getmyDB();
 
+if (isset($_POST['action']) && $_POST['action'] == 'viewUser') {
+    $list = new Permission();
+    $list->listUser($con);
+}
 
 if (isset($_POST['action']) && $_POST['action'] == 'view') {
     $user->showUpdateProfil($con);
@@ -48,3 +52,16 @@ if(isset($_POST['action']) && $_POST['action']=='insert'){
     
     $user->verifLogin($con,$login,$mdp,$role);
   }
+
+  if (isset($_POST['edit_id_admin'])) {
+    $id = $_POST['edit_id_admin'];
+    $row = $user->getArticleById($con, $id);
+    echo json_encode($row); // response retournée
+}
+
+  if (isset($_POST['action']) && $_POST['action'] == 'updateAdmin') {
+    $id = $_POST['edit_id_admin'];
+    $role = $_POST['role'];
+
+    $user->updateAdmin($con, $id, $role);
+}

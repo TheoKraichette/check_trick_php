@@ -122,18 +122,18 @@ ob_start();
                         <!-- Modal body -->
                         <div class="modal-body px-4">
                             <form action="" method="POST" id="edit-form-data">
-                                <input type="hidden" name="edit_id" id="edit_id">
+                                <input type="hidden" name="edit_id_admin" id="edit_id_admin">
 
                                 <div class="form-group p-2">
                                     <label class="form-label">Role :</label>
-                                    <select class="form-select" name="role" id="roleUp">
+                                    <select class="form-select" name="role" id="role_admin">
                                         <option value="admin">admin</option>
-                                        <option value="user">user</option>
+                                        <option value="user" >user</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group p-2">
-                                    <input type="submit" name="update" id="update" value="VALIDER" class="btn btn-outline-primary btn-block form-control">
+                                    <input type="submit" name="updateAdmin" id="updateAdmin" value="VALIDER" class="btn btn-outline-primary btn-block form-control">
                                 </div>
                             </form>
                         </div>

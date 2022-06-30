@@ -1,3 +1,16 @@
+function showAllArticles() {
+  $.ajax({
+    url: "controllers/controller.php",
+    type: "POST",
+    data: {
+      action: "viewUser",
+    },
+    success: function (response) {
+      $("#list_user").html(response);
+    },
+  });
+}
+
 function showUpdateProfil() {
   $.ajax({
     url: "controllers/controller.php",
@@ -78,6 +91,40 @@ $(function () {
   showIntermediateTricks();
   showConfirmedTricks();
   showExpertTricks();
+  showAllArticles();
+
+  $("body").on("click", ".editBtnAdmin", function (e) {
+    e.preventDefault();
+    edit_id_admin = $(this).attr("id");
+    $.ajax({
+      url: "controllers/controller.php",
+      type: "POST",
+      data: {
+        edit_id_admin: edit_id_admin,
+      },
+      success: function (response) {
+        data = JSON.parse(response);
+        $("#edit_id_admin").val(data.id); // à ce niveau data est sous forme de clef:valeur
+        $("#role_admin").val(data.role);
+      },
+    });
+  });
+    // mis à jour du profil
+    $("#updateAdmin").click(function (e) {
+      e.preventDefault();
+      $.ajax({
+        url: "controllers/controller.php",
+        type: "POST",
+        data: $("#edit-form-data").serialize() + "&action=updateAdmin",
+        success: function (response) {
+          Swal.fire({ title: "Profil modifié avec succès !", icon: "success" });
+          $("#editModal").modal("hide");
+          $("#edit-form-data")[0].reset();
+          showAllArticles();
+        },
+      });
+    });
+  
   // creation d un article requête ajax
   $("#insert").click(function (e) {
     if ($("#form-data")[0].checkValidity()) {
